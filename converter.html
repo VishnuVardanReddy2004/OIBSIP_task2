@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  input[type="number"] {
+    padding: 8px;
+    width: 150px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  select {
+    padding: 8px;
+    font-size: 16px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #result {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Temperature Converter</h2>
+
+<input type="number" id="temperature" placeholder="Enter temperature" step="any" required>
+<select id="fromUnit">
+  <option value="celsius">Celsius</option>
+  <option value="fahrenheit">Fahrenheit</option>
+  <option value="kelvin">Kelvin</option>
+</select>
+<button onclick="convertTemperature()">Convert</button>
+<div id="result"></div>
+
+<script>
+function convertTemperature() {
+  const temperatureInput = document.getElementById('temperature').value;
+  const fromUnit = document.getElementById('fromUnit').value;
+  let convertedTemperature;
+  
+  if (fromUnit === 'celsius') {
+    convertedTemperature = (parseFloat(temperatureInput) * 9/5) + 32;
+    document.getElementById('result').textContent = `${temperatureInput} °C = ${convertedTemperature.toFixed(2)} °F`;
+  } else if (fromUnit === 'fahrenheit') {
+    convertedTemperature = (parseFloat(temperatureInput) - 32) * 5/9;
+    document.getElementById('result').textContent = `${temperatureInput} °F = ${convertedTemperature.toFixed(2)} °C`;
+  } else if (fromUnit === 'kelvin') {
+    convertedTemperature = parseFloat(temperatureInput) - 273.15;
+    document.getElementById('result').textContent = `${temperatureInput} K = ${convertedTemperature.toFixed(2)} °C`;
+  }
+}
+</script>
+
+</body>
+</html>
